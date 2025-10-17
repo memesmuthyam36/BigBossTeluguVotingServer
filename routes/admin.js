@@ -115,6 +115,57 @@ router.put("/contestants/:id", async (req, res) => {
   }
 });
 
+// Update contestant votes
+router.put("/contestants/:id/votes", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { votes } = req.body;
+
+    if (typeof votes !== "number" || votes < 0) {
+      return res.status(400).json({
+        success: false,
+        message: "Votes must be a non-negative number",
+      });
+    }
+
+    const contestant = await Contestant.findByIdAndUpdate(
+      id,
+      { votes },
+      { new: true, runValidators: true }
+    );
+
+    if (!contestant) {
+      return res.status(404).json({
+        success: false,
+        message: "Contestant not found",
+      });
+    }
+
+    // Emit real-time update
+    if (req.app.get("io")) {
+      const allContestants = await Contestant.find();
+      const totalVotes = allContestants.reduce((sum, c) => sum + c.votes, 0);
+      req.app.get("io").emit("voteUpdate", {
+        contestants: allContestants,
+        totalVotes,
+      });
+    }
+
+    res.json({
+      success: true,
+      message: "Contestant votes updated successfully",
+      data: contestant,
+    });
+  } catch (error) {
+    console.error("Error updating contestant votes:", error);
+    res.status(500).json({
+      success: false,
+      message: "Error updating contestant votes",
+      error: error.message,
+    });
+  }
+});
+
 // Delete contestant
 router.delete("/contestants/:id", async (req, res) => {
   try {
