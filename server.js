@@ -29,7 +29,7 @@ const io = socketIo(server, {
 });
 
 // Connect to MongoDB
-connectDB();
+connectDB().catch(console.error);
 
 // Middleware
 app.use(helmet());

@@ -12,6 +12,10 @@ const connectDB = async () => {
       mongoURI.replace(/\/\/.*@/, "//****:****@")
     ); // Hide credentials in log
 
+    // Configure mongoose for serverless environments
+    // mongoose.set('bufferCommands', false);
+    // mongoose.set('bufferMaxEntries', 0);
+
     const conn = await mongoose.connect(mongoURI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
@@ -20,8 +24,6 @@ const connectDB = async () => {
       maxPoolSize: 5, // Reduced for serverless
       retryWrites: true,
       w: "majority",
-      bufferCommands: false, // Disable mongoose buffering for serverless
-      bufferMaxEntries: 0, // Disable mongoose buffering for serverless
     });
 
     console.log(`✅ MongoDB Connected: ${conn.connection.host}`);
