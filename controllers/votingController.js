@@ -163,11 +163,13 @@ const checkVotingStatus = async (req, res) => {
       data: {
         dailyVoteCount,
         remainingVotes: Math.max(0, 3 - dailyVoteCount),
-        votedContestants: votedToday.map((vote) => ({
-          contestantId: vote.contestantId._id,
-          contestantName: vote.contestantId.name,
-          voteTime: vote.voteDate,
-        })),
+        votedContestants: votedToday
+          .filter((vote) => vote.contestantId) // Filter out votes with null contestantId
+          .map((vote) => ({
+            contestantId: vote.contestantId._id,
+            contestantName: vote.contestantId.name,
+            voteTime: vote.voteDate,
+          })),
       },
     });
   } catch (error) {

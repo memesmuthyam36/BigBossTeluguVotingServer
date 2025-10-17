@@ -16,101 +16,49 @@ const connectDB = async () => {
   }
 };
 
-// Sample contestants data
+// Sample contestants data - using actual images from client/images folder
 const sampleContestants = [
   {
-    name: "Contestant 1",
+    name: "Bharani",
     description:
-      "Popular contestant with strong fan base and great personality",
-    image: "images/contestant-1.jpg",
+      "Popular contestant with strong fan base and leadership qualities",
+    image: "images/bharani.png",
     votes: 2456,
-    season: "current",
-    socialLinks: {
-      instagram: "https://instagram.com/contestant1",
-      twitter: "https://twitter.com/contestant1",
-    },
   },
   {
-    name: "Contestant 2",
+    name: "Divya",
     description:
-      "Drama queen with entertaining personality and excellent game sense",
-    image: "images/contestant-2.jpg",
+      "Fan favorite with entertaining personality and excellent social skills",
+    image: "images/divya.png",
     votes: 1892,
-    season: "current",
-    socialLinks: {
-      instagram: "https://instagram.com/contestant2",
-      twitter: "https://twitter.com/contestant2",
-    },
   },
   {
-    name: "Contestant 3",
+    name: "Pavan",
     description:
-      "Strategic player with good game sense and leadership qualities",
-    image: "images/contestant-3.jpg",
+      "Task master with excellent physical abilities and competitive spirit",
+    image: "images/pavan.png",
     votes: 2134,
-    season: "current",
-    socialLinks: {
-      instagram: "https://instagram.com/contestant3",
-      twitter: "https://twitter.com/contestant3",
-    },
   },
   {
-    name: "Contestant 4",
+    name: "Ramu",
     description:
-      "Underdog with surprising popularity and great entertainment value",
-    image: "images/contestant-4.jpg",
+      "Entertainment specialist bringing humor and positive vibes to the house",
+    image: "images/ramu.png",
     votes: 1567,
-    season: "current",
-    socialLinks: {
-      instagram: "https://instagram.com/contestant4",
-      twitter: "https://twitter.com/contestant4",
-    },
   },
   {
-    name: "Contestant 5",
-    description: "Comedy king with great entertainment value and humor",
-    image: "images/contestant-5.jpg",
-    votes: 1234,
-    season: "current",
-    socialLinks: {
-      instagram: "https://instagram.com/contestant5",
-      twitter: "https://twitter.com/contestant5",
-    },
-  },
-  {
-    name: "Contestant 6",
+    name: "Suman",
     description:
-      "Strong personality with leadership qualities and strategic mind",
-    image: "images/contestant-6.jpg",
+      "Strong competitor with dedicated fan base and consistent performance",
+    image: "images/suman.png",
     votes: 1789,
-    season: "current",
-    socialLinks: {
-      instagram: "https://instagram.com/contestant6",
-      twitter: "https://twitter.com/contestant6",
-    },
   },
   {
-    name: "Contestant 7",
-    description: "Emotional and relatable contestant with great fan following",
-    image: "images/contestant-7.jpg",
-    votes: 1456,
-    season: "current",
-    socialLinks: {
-      instagram: "https://instagram.com/contestant7",
-      twitter: "https://twitter.com/contestant7",
-    },
-  },
-  {
-    name: "Contestant 8",
+    name: "Thanuja",
     description:
-      "Wildcard entry with unpredictable nature and surprising moves",
-    image: "images/contestant-8.jpg",
-    votes: 1123,
-    season: "current",
-    socialLinks: {
-      instagram: "https://instagram.com/contestant8",
-      twitter: "https://twitter.com/contestant8",
-    },
+      "Dynamic player with strategic mind and excellent communication skills",
+    image: "images/thanuja.png",
+    votes: 1456,
   },
 ];
 
@@ -118,6 +66,7 @@ const sampleContestants = [
 const sampleBlogPosts = [
   {
     title: "Top 10 Funniest Bigg Boss Memes This Week",
+    slug: "top-10-memes",
     content: `
       <p>This week had some of the most hilarious moments in Bigg Boss Telugu history, and our amazing community has created some incredible memes to capture them!</p>
       
@@ -131,47 +80,45 @@ const sampleBlogPosts = [
     `,
     excerpt:
       "Check out the most hilarious memes that have been circulating about our favorite contestants this week...",
-    featuredImage: "images/blog-post-1.jpg",
+    featuredImage: "images/banner.png",
     category: "memes",
     tags: ["memes", "contestants", "funny"],
     author: "Admin",
-    metaDescription:
-      "Check out the funniest Bigg Boss Telugu memes of the week",
-    metaKeywords: ["bigg boss", "memes", "telugu", "funny"],
-    isPublished: true,
-    isFeatured: true,
     viewCount: 1240,
     shareCount: 89,
+    isPublished: true,
+    isFeatured: true,
+    publishedAt: new Date(),
   },
   {
     title: "Weekly Contestant Performance Analysis",
+    slug: "weekly-analysis",
     content: `
       <p>Another week of intense drama and competition in the Bigg Boss house. Let's analyze how each contestant performed this week.</p>
       
       <h3>Top Performers</h3>
-      <p>Contestant 1 has been showing excellent leadership skills and has maintained their position as a fan favorite.</p>
+      <p>Bharani has been showing excellent leadership skills and has maintained their position as a fan favorite.</p>
       
       <h3>Surprise Moments</h3>
-      <p>Contestant 4's unexpected strategy this week surprised everyone, including other housemates!</p>
+      <p>Pavan's unexpected strategy this week surprised everyone, including other housemates!</p>
       
       <p>What do you think about this week's performances? Let us know in the comments!</p>
     `,
     excerpt:
       "Who's winning hearts and who's causing drama? Our detailed analysis of this week's performances...",
-    featuredImage: "images/blog-post-2.jpg",
+    featuredImage: "images/banner.png",
     category: "analysis",
     tags: ["analysis", "performance", "week"],
     author: "Admin",
-    metaDescription:
-      "Weekly analysis of Bigg Boss Telugu contestants performance",
-    metaKeywords: ["bigg boss", "analysis", "performance", "contestants"],
-    isPublished: true,
-    isFeatured: false,
     viewCount: 856,
     shareCount: 34,
+    isPublished: true,
+    isFeatured: false,
+    publishedAt: new Date(),
   },
   {
     title: "Behind the Scenes: What You Don't See on TV",
+    slug: "behind-scenes",
     content: `
       <p>Ever wondered what happens when the cameras are off in the Bigg Boss house? We have some exclusive insights for you!</p>
       
@@ -185,16 +132,15 @@ const sampleBlogPosts = [
     `,
     excerpt:
       "Exclusive insights into the making of Bigg Boss Telugu and what happens when cameras are off...",
-    featuredImage: "images/blog-post-3.jpg",
+    featuredImage: "images/banner.png",
     category: "behind-scenes",
     tags: ["behind-scenes", "exclusive", "production"],
     author: "Admin",
-    metaDescription: "Behind the scenes secrets of Bigg Boss Telugu production",
-    metaKeywords: ["bigg boss", "behind scenes", "production", "secrets"],
-    isPublished: true,
-    isFeatured: true,
     viewCount: 2100,
     shareCount: 156,
+    isPublished: true,
+    isFeatured: false,
+    publishedAt: new Date(),
   },
 ];
 

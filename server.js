@@ -16,6 +16,7 @@ const { generalLimiter } = require("./middleware/rateLimiter");
 // Import routes
 const votingRoutes = require("./routes/voting");
 const blogRoutes = require("./routes/blog");
+const adminRoutes = require("./routes/admin");
 
 // Initialize Express app
 const app = express();
@@ -45,6 +46,7 @@ app.use("/api/", generalLimiter);
 // API Routes
 app.use("/api/voting", votingRoutes);
 app.use("/api/blog", blogRoutes);
+app.use("/api/admin", adminRoutes);
 
 // Health check endpoint
 app.get("/api/health", (req, res) => {
