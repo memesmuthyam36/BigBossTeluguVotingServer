@@ -60,24 +60,8 @@ const submitVote = async (req, res) => {
       });
     }
 
-    // Check if IP has already voted today for this contestant
-    const hasVotedToday = await Vote.hasVotedToday(voterIp, contestantId);
-    if (hasVotedToday) {
-      return res.status(400).json({
-        success: false,
-        message: "You have already voted for this contestant today",
-      });
-    }
-
-    // Check daily vote limit (prevent spam voting for multiple contestants)
-    const dailyVoteCount = await Vote.getDailyVoteCount(voterIp);
-    if (dailyVoteCount >= 3) {
-      // Limit to 3 votes per day per IP
-      return res.status(400).json({
-        success: false,
-        message: "Daily vote limit reached (3 votes per day)",
-      });
-    }
+    // Note: Voting is now session-based, so we don't check for previous votes on the server side
+    // The frontend handles session-based voting restrictions using sessionStorage
 
     // Create vote record
     const dayKey = Vote.createDayKey(voterIp);
@@ -113,7 +97,7 @@ const submitVote = async (req, res) => {
           ...updatedContestant,
           votePercentage,
         },
-        remainingVotes: 3 - (dailyVoteCount + 1),
+        contestantName: updatedContestant.name,
       },
     });
 
@@ -131,7 +115,7 @@ const submitVote = async (req, res) => {
     if (error.code === 11000) {
       return res.status(400).json({
         success: false,
-        message: "You have already voted for this contestant today",
+        message: "You have already voted for this contestant in this session",
       });
     }
 
@@ -143,33 +127,19 @@ const submitVote = async (req, res) => {
   }
 };
 
-// Check if IP has voted today
+// Check if IP has voted today (kept for compatibility but not used in session-based voting)
 const checkVotingStatus = async (req, res) => {
   try {
-    const voterIp =
-      req.ip || req.connection.remoteAddress || req.socket.remoteAddress;
-
-    // Get today's votes for this IP
-    const dailyVoteCount = await Vote.getDailyVoteCount(voterIp);
-
-    // Get which contestants this IP has voted for today
-    const dayKey = Vote.createDayKey(voterIp);
-    const votedToday = await Vote.find({ dayKey })
-      .populate("contestantId", "name _id")
-      .lean();
-
+    // Since we're now using session-based voting, this endpoint is mainly for compatibility
+    // The frontend handles voting status using sessionStorage
     res.json({
       success: true,
       data: {
-        dailyVoteCount,
-        remainingVotes: Math.max(0, 3 - dailyVoteCount),
-        votedContestants: votedToday
-          .filter((vote) => vote.contestantId) // Filter out votes with null contestantId
-          .map((vote) => ({
-            contestantId: vote.contestantId._id,
-            contestantName: vote.contestantId.name,
-            voteTime: vote.voteDate,
-          })),
+        dailyVoteCount: 0,
+        remainingVotes: 1,
+        votedContestants: [],
+        message:
+          "Session-based voting is now active. Check frontend sessionStorage for voting status.",
       },
     });
   } catch (error) {
