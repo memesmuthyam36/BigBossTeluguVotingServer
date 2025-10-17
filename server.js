@@ -43,6 +43,18 @@ app.set("trust proxy", 1);
 // Apply general rate limiting to all routes
 app.use("/api/", generalLimiter);
 
+// Health check endpoint
+app.get("/", (req, res) => {
+  res.json({
+    success: true,
+    message: "Big Boss Telugu Voting Server is running",
+    timestamp: new Date().toISOString(),
+    environment: process.env.NODE_ENV || "development",
+    database:
+      mongoose.connection.readyState === 1 ? "connected" : "disconnected",
+  });
+});
+
 // API Routes
 app.use("/api/voting", votingRoutes);
 app.use("/api/blog", blogRoutes);

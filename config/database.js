@@ -15,11 +15,13 @@ const connectDB = async () => {
     const conn = await mongoose.connect(mongoURI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      serverSelectionTimeoutMS: 10000, // Increased timeout for Atlas
+      serverSelectionTimeoutMS: 30000, // Increased timeout for Vercel
       socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
-      maxPoolSize: 10, // Maintain up to 10 socket connections
+      maxPoolSize: 5, // Reduced for serverless
       retryWrites: true,
       w: "majority",
+      bufferCommands: false, // Disable mongoose buffering for serverless
+      bufferMaxEntries: 0, // Disable mongoose buffering for serverless
     });
 
     console.log(`✅ MongoDB Connected: ${conn.connection.host}`);
