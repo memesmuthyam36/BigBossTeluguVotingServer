@@ -3,7 +3,9 @@ const router = express.Router();
 const votingController = require("../controllers/votingController");
 const rateLimit = require("express-rate-limit");
 
-// Rate limiting for voting endpoints
+// Rate limiting for voting endpoints to prevent spam
+// Session-based voting: users can vote once per browser session
+// Rate limit: 5 requests per minute per IP to prevent abuse
 const voteLimiter = rateLimit({
   windowMs: 60 * 1000, // 1 minute
   max: 5, // 5 requests per minute per IP

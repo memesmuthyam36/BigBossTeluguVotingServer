@@ -60,8 +60,9 @@ const submitVote = async (req, res) => {
       });
     }
 
-    // Note: Voting is now session-based, so we don't check for previous votes on the server side
-    // The frontend handles session-based voting restrictions using sessionStorage
+    // Session-based voting: frontend controls voting restrictions using sessionStorage
+    // Server accepts all votes (within rate limits) and doesn't check for duplicates
+    // This allows users to vote again after closing/reopening their browser
 
     // Create vote record
     const dayKey = Vote.createDayKey(voterIp);
@@ -110,14 +111,6 @@ const submitVote = async (req, res) => {
     });
   } catch (error) {
     console.error("Error submitting vote:", error);
-
-    // Handle duplicate key error (race condition)
-    if (error.code === 11000) {
-      return res.status(400).json({
-        success: false,
-        message: "You have already voted for this contestant in this session",
-      });
-    }
 
     res.status(500).json({
       success: false,

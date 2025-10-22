@@ -41,13 +41,10 @@ const voteSchema = new mongoose.Schema({
   },
 });
 
-// Compound index to prevent duplicate votes per day per IP
-voteSchema.index({ dayKey: 1, contestantId: 1 }, { unique: true });
-
-// Index for querying votes by contestant
+// Index for querying votes by contestant (removed unique constraint for session-based voting)
 voteSchema.index({ contestantId: 1, voteDate: -1 });
 
-// Index for daily vote tracking
+// Index for tracking votes (for analytics only, not for restriction)
 voteSchema.index({ dayKey: 1 });
 
 // Static method to create day key for vote tracking
