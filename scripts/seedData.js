@@ -142,6 +142,82 @@ const sampleBlogPosts = [
     isFeatured: false,
     publishedAt: new Date(),
   },
+  {
+    title:
+      "Bigg Boss Telugu Voting Guide 2025 - How to Vote Online for Season 9",
+    slug: "voting-guide",
+    content: `
+      <h2>Complete Guide to Bigg Boss Telugu Voting</h2>
+      <p><strong>Bigg Boss Telugu voting</strong> is an essential part of the show that gives power to the audience to decide which contestants stay in the house. Bigg Boss Telugu Season 9, hosted by Nagarjuna Akkineni, has captivated millions of viewers across India.</p>
+      
+      <h3>Understanding the Voting System</h3>
+      <p>The <strong>Bigg Boss Telugu voting</strong> system operates through multiple platforms, giving viewers flexibility in how they cast their votes. The official platform is Disney+ Hotstar, while community platforms allow fans to show support through unofficial polls.</p>
+      
+      <h3>How to Vote for Bigg Boss Telugu Online</h3>
+      <h4>Method 1: Official Voting via Disney+ Hotstar</h4>
+      <ol>
+        <li>Download Disney+ Hotstar App from Google Play Store or Apple App Store</li>
+        <li>Login or Sign Up with your credentials</li>
+        <li>Find Bigg Boss Telugu 9 in the app</li>
+        <li>Access the Voting Section</li>
+        <li>Select your favorite nominated contestant</li>
+        <li>Submit your vote (up to 10 votes per day)</li>
+      </ol>
+      
+      <h4>Method 2: Community Voting</h4>
+      <p>Visit our <a href="/voting.html">Bigg Boss Telugu voting page</a> to participate in community polls and show support for your favorite contestant!</p>
+      
+      <h3>Voting Rules 2025</h3>
+      <ul>
+        <li>You can cast up to 10 votes per day on the official Hotstar app</li>
+        <li>Voting is only available for nominated contestants</li>
+        <li>Voting typically starts Monday morning and closes Friday evening</li>
+        <li>You must have a valid Disney+ Hotstar account to vote officially</li>
+        <li>Voting is completely free on both official and fan platforms</li>
+      </ul>
+      
+      <h3>Tips to Maximize Your Voting Impact</h3>
+      <ul>
+        <li><strong>Vote Daily:</strong> Use all 10 votes every day to maximize support</li>
+        <li><strong>Share with Friends:</strong> Encourage friends and family to vote</li>
+        <li><strong>Vote Early:</strong> Don't wait until Friday - vote throughout the week</li>
+        <li><strong>Multiple Devices:</strong> Use different accounts from family members</li>
+      </ul>
+      
+      <h3>FAQs About Bigg Boss Telugu Voting</h3>
+      <p><strong>Q: Is Bigg Boss Telugu voting free?</strong><br>
+      A: Yes! Voting is completely free on both Disney+ Hotstar and community platforms.</p>
+      
+      <p><strong>Q: How many times can I vote?</strong><br>
+      A: You can vote up to 10 times per day on the official Hotstar app.</p>
+      
+      <p><strong>Q: When does voting close?</strong><br>
+      A: Voting typically closes on Friday evening before the weekend elimination episode.</p>
+      
+      <p><strong>Ready to vote?</strong> Visit our <a href="/voting.html">Bigg Boss Telugu voting page</a> now and support your favorite contestant!</p>
+    `,
+    excerpt:
+      "Complete guide to Bigg Boss Telugu voting 2025. Learn how to vote online, voting rules, tips to support your favorite contestant, and everything about Bigg Boss Telugu Season 9 voting process.",
+    featuredImage: "images/banner.png",
+    category: "news",
+    tags: ["voting", "guide", "how-to", "bigg boss telugu", "season 9"],
+    author: "Memes Muthyam",
+    metaDescription:
+      "Complete guide to Bigg Boss Telugu voting 2025. Learn how to vote online, voting rules, and tips to support your favorite contestant.",
+    metaKeywords: [
+      "bigg boss telugu voting",
+      "bigg boss telugu vote online",
+      "how to vote bigg boss telugu",
+      "bigg boss voting guide",
+      "bigg boss season 9 voting",
+      "bigg boss telugu online voting",
+    ],
+    viewCount: 0,
+    shareCount: 0,
+    isPublished: true,
+    isFeatured: true,
+    publishedAt: new Date("2025-10-22"),
+  },
 ];
 
 // Seed the database
